@@ -1,0 +1,10 @@
+@if (notificationService.message()) {
+<div class="notification-toast" [ngClass]="notificationService.type()">
+    <span class="icon">
+        @if (notificationService.type() === 'success') { ✅ }
+        @else if (notificationService.type() === 'error') { ❌ }
+        @else { ℹ️ }
+    </span>
+    {{ notificationService.message() }}
+</div>
+}
