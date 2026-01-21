@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController()
-@RequestMapping("/auth")
+@RequestMapping("/api/auth")
 @Tag(name="Autenticación", description="Endpoints para el registro y login de usuarios")
 public class AuthController {
 

@@ -1,0 +1,35 @@
+<div class="register-container">
+    <h2>Registro Booqo</h2>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="username">Nombre de usuario</label>
+            <input id="username" type="text" formControlName="username" placeholder="Tu nombre">
+            @if (registerForm.get('username')?.invalid && registerForm.get('username')?.touched) {
+            <small class="error">Mínimo 3 caracteres obligatorios</small>
+            }
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email institucional</label>
+            <input id="email" type="email" formControlName="email" placeholder="email@ejemplo.com">
+            @if (registerForm.get('email')?.invalid && registerForm.get('email')?.touched) {
+            <small class="error">Introduce un email válido</small>
+            }
+        </div>
+
+        <div class="form-group">
+            <label for="password">Contraseña</label>
+            <input id="password" type="password" formControlName="password" placeholder="••••••••">
+            @if (registerForm.get('password')?.invalid && registerForm.get('password')?.touched) {
+            <small class="error">La contraseña debe tener al menos 6 caracteres</small>
+            }
+        </div>
+
+        <button type="submit" [disabled]="registerForm.invalid">
+            Crear Cuenta
+        </button>
+    </form>
+
+    <p>¿Ya eres parte de la clínica? <a routerLink="/login">Inicia sesión</a></p>
+</div>
