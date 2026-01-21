@@ -1,0 +1,20 @@
+# --- BACKEND (Spring Boot) ---
+booqo-api/target/
+booqo-api/.idea/
+booqo-api/*.iml
+booqo-api/.classpath
+booqo-api/.project
+booqo-api/.settings/
+
+# --- FRONTEND (Angular) ---
+booqo-web/node_modules/
+booqo-web/dist/
+booqo-web/.angular/
+booqo-web/.vscode/
+booqo-web/npm-debug.log
+
+# --- GENERAL ---
+.DS_Store
+*.log
+.idea/
+.vscode/
