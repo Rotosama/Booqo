@@ -5,7 +5,6 @@ import com.booqo.booqo_api.user.User;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
@@ -27,11 +26,11 @@ public class Center {
     private String cif;
 
     // Relaciones
-    @OneToMany(mappedBy = "center")
-    private List<User> employees;
+//    @OneToMany(mappedBy = "center")
+//    private List<User> employees;
 
-    @OneToMany(mappedBy = "center")
-    private List<Client> clients;
+    //@OneToMany(mappedBy = "center")
+    //private List<Client> clients;
 
     // Getters y Setters
 
@@ -59,19 +58,19 @@ public class Center {
         this.cif = cif;
     }
 
-    public List<User> getEmployees() {
-        return employees;
-    }
+//    public List<User> getEmployees() {
+//        return employees;
+//    }
+//
+//    public void setEmployees(List<User> employees) {
+//        this.employees = employees;
+//    }
 
-    public void setEmployees(List<User> employees) {
-        this.employees = employees;
-    }
-
-    public List<Client> getClients() {
-        return clients;
-    }
-
-    public void setClients(List<Client> clients) {
-        this.clients = clients;
-    }
+//    public List<Client> getClients() {
+//        return clients;
+//    }
+//
+//    public void setClients(List<Client> clients) {
+//        this.clients = clients;
+//    }
 }
