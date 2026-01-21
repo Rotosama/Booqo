@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../../../core/services/auth.service';
+import { NotificationService } from '../../../../shared/services/notification.service';
 
 @Component({
   selector: 'app-register',
@@ -15,6 +16,7 @@ export class RegisterPage {
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
   private router = inject(Router);
+  private notify = inject(NotificationService);
 
   registerForm: FormGroup = this.fb.group({
     username: ['', [Validators.required, Validators.minLength(3)]],
@@ -26,12 +28,11 @@ export class RegisterPage {
     if (this.registerForm.valid) {
       this.authService.register(this.registerForm.value).subscribe({
         next: () => {
-          console.log('Registro exitoso');
+          this.notify.show('Usuario registrado exitosamente.', 'success');
           this.router.navigate(['/dashboard']);
         },
         error: (err) => {
-          console.error('Error en el registro', err);
-          alert('Error al registrar usuario. Revisa los datos.');
+          this.notify.show('Error al registrar usuario. Revisa los datos.', 'error');
         },
       });
     }
