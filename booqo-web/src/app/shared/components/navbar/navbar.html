@@ -1,0 +1,15 @@
+<nav class="navbar">
+    <div class="navbar-brand">
+        <span class="logo">🏥 Booqo</span>
+    </div>
+
+    <ul class="navbar-links">
+        <li><a routerLink="/dashboard">Inicio</a></li>
+        <li><a routerLink="/pacientes">Pacientes</a></li>
+    </ul>
+
+    <div class="navbar-user">
+        <span class="user-email">{{ userEmail }}</span> <button (click)='onLogout()' class="btn-logout">Cerrar
+            Sesión</button>
+    </div>
+</nav>
