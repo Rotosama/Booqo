@@ -1,22 +1,22 @@
 package com.booqo.booqo_api.center.dto;
 
-import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
-@Schema(description = "Datos para registrar un nuevo centro")
-public class CenterRequest {
+public record CenterRequest(
+        @NotBlank(message = "El nombre es obligatorio")
+        String name,
 
-    @Schema(example = "Centro Médico Booqo Norte")
-    @NotBlank(message = "El nombre del centro es obligatorio")
-    private String name;
+        @NotBlank(message = "El CIF es obligatorio")
+        String cif,
 
-    @Schema(example = "B12345678")
-    @NotBlank(message = "El CIF es obligatorio")
-    private String cif;
+        @NotBlank(message = "La dirección es obligatoria")
+        String address,
 
-    // Getters y Setters
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
-    public String getCif() { return cif; }
-    public void setCif(String cif) { this.cif = cif; }
-}
+        @NotBlank(message = "El teléfono es obligatorio")
+        String phone,
+
+        @NotBlank(message = "El email es obligatorio")
+        @Email(message = "Formato de email inválido")
+        String email
+) {}

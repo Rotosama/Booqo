@@ -1,6 +1,7 @@
 package com.booqo.booqo_api.user;
 
 
+import com.booqo.booqo_api.center.Center;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -43,6 +44,10 @@ public class User implements UserDetails {
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 
+    @ManyToOne
+    @JoinColumn(name = "center_id")
+    private Center center;
+
     public User() {}
 
     // Getters y setters
@@ -50,8 +55,9 @@ public class User implements UserDetails {
         return id;
     }
 
+    @Override
     public String getUsername() {
-        return username;
+       return this.email;
     }
 
     @Override
@@ -96,7 +102,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
+        return List.of(() -> "ROLE_" + this.role);
     }
 
     public String getPassword() {
@@ -125,5 +131,13 @@ public class User implements UserDetails {
 
     public LocalDateTime getCreatedAt() {
         return createdAt;
+    }
+
+    public Center getCenter() {
+        return center;
+    }
+
+    public void setCenter(Center center) {
+        this.center = center;
     }
 }

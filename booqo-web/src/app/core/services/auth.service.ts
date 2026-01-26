@@ -1,7 +1,7 @@
 import { Injectable, inject, signal, computed } from '@angular/core';
 import { AuthApiService } from './auth-api.service';
-import { RegisterRequest, LoginRequest } from '../../models/auth.model';
-import { tap } from 'rxjs';
+import { RegisterRequest, LoginRequest, AuthResponse } from '../../models/auth.model';
+import { Observable, tap } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
 
 interface JwtPayload {
@@ -31,7 +31,7 @@ export class AuthService {
   readonly token = this._token.asReadonly();
   readonly isAuthenticated = computed(() => !!this._token());
 
-  register(data: RegisterRequest) {
+  register(data: RegisterRequest): Observable<AuthResponse> {
     return this.authApi.register(data).pipe(
       tap((res) => {
         localStorage.setItem('token', res.token);
@@ -40,7 +40,7 @@ export class AuthService {
     );
   }
 
-  login(data: LoginRequest) {
+  login(data: LoginRequest): Observable<AuthResponse> {
     return this.authApi.login(data).pipe(
       tap((res) => {
         localStorage.setItem('token', res.token);

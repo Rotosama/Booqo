@@ -4,10 +4,10 @@ import com.booqo.booqo_api.client.Client;
 import com.booqo.booqo_api.user.User;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
 import java.util.List;
-
 @Entity
 @Table(name = "centers")
 @Schema(description = "Representa un centro de trabajo o sede de la clínica")
@@ -17,20 +17,33 @@ public class Center {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Schema(example = "Centro Médico Booqo Norte")
     @NotBlank
+    @Column (nullable = false, length = 100)
     private String name;
 
-    @Schema(example = "B12345678")
     @NotBlank
+    @Column (nullable = false, unique = true, length = 20)
     private String cif;
 
-    // Relaciones
-//    @OneToMany(mappedBy = "center")
-//    private List<User> employees;
+    @NotBlank
+    @Column (nullable = false, length = 200)
+    private String address;
 
-    //@OneToMany(mappedBy = "center")
-    //private List<Client> clients;
+    @NotBlank
+    @Column (nullable = false, length = 15)
+    private String phone;
+
+    @NotBlank
+    @Email
+    @Column (nullable = false, length = 100)
+    private String email;
+
+    // Relaciones
+    @OneToMany(mappedBy = "center")
+    private List<User> employees;
+//
+//    @OneToMany(mappedBy = "center")
+//    private List<Client> clients;
 
     // Getters y Setters
 
@@ -58,13 +71,37 @@ public class Center {
         this.cif = cif;
     }
 
-//    public List<User> getEmployees() {
-//        return employees;
-//    }
-//
-//    public void setEmployees(List<User> employees) {
-//        this.employees = employees;
-//    }
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public List<User> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<User> employees) {
+        this.employees = employees;
+    }
 
 //    public List<Client> getClients() {
 //        return clients;
