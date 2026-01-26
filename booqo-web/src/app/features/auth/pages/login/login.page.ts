@@ -2,8 +2,8 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { AuthService } from '../../../../core/services/auth.service';
-import { NotificationService } from '../../../../shared/services/notification.service';
+import { AuthService } from '@core/services/auth.service';
+import { NotificationService } from '@shared/services/notification.service';
 
 @Component({
   selector: 'app-login',
@@ -30,7 +30,7 @@ export class LoginPage {
           this.notify.show('Inicio de sesión exitoso.', 'success');
           this.router.navigate(['/dashboard']);
         },
-        error: (err) => {
+        error: (err: any) => {
           this.notify.show('Error al iniciar sesión. Revisa los datos.', 'error');
         },
       });

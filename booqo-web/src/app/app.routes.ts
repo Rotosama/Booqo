@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { authguard } from '@core/guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -14,6 +15,7 @@ export const routes: Routes = [
     path: 'dashboard',
     loadComponent: () =>
       import('./features/dashboard/pages/dashboard/dashboard.page').then((m) => m.DashboardPage),
+    canActivate: [authguard],
   },
   {
     path: '',

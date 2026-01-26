@@ -3,11 +3,19 @@ import { HttpClient } from '@angular/common/http';
 import { RegisterRequest, AuthResponse, LoginRequest } from '../../models/auth.model';
 import { Observable } from 'rxjs';
 
+/**
+ * Servicio que se encarga de la autenticación del usuario.
+ *
+ */
 @Injectable({ providedIn: 'root' })
 export class AuthApiService {
   private readonly http = inject(HttpClient);
   private readonly url = 'http://localhost:8080/api/auth';
-
+  /**
+   * Metodo que se encarga de registrar un nuevo usuario.
+   * @param data datos del usuario a registrar
+   * @returns Observable<AuthResponse> respuesta del servidor
+   */
   register(data: RegisterRequest): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.url}/register`, data);
   }

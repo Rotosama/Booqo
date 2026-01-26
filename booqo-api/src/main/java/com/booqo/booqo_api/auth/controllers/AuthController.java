@@ -30,6 +30,7 @@ public class AuthController {
         this.authService = authService;
         this.jwtService = jwtService;
     }
+
     @PostMapping("/register")
     @Operation(summary="Registro", description = "Crea un nuevo usuario y devuelve su token JWT")
     @ApiResponses(value = {
@@ -50,10 +51,10 @@ public class AuthController {
 
     @PostMapping("/login")
     @Operation(summary="Inicio Sesión", description = "Endpoint para iniciar sesión de un usuario")
-@ApiResponses(value= {
+    @ApiResponses(value= {
         @ApiResponse(responseCode = "200", description = "Inicio de sesión exitoso"),
         @ApiResponse(responseCode = "401", description = "Credenciales inválidas")
-})
+    })
     public ResponseEntity<?> login(@Valid @RequestBody LoginRequest request) {
         try {
             return ResponseEntity.ok(authService.login(request));

@@ -16,7 +16,7 @@ public class JwtService {
 
     private static final Key SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS256);
     private static final long EXPIRATION_TIME = 86400000; // 24 horas
-
+//TODO meter el rol en el token
     public String generateToken(String email) {
         return Jwts.builder()
                 .setSubject(email)
