@@ -7,15 +7,13 @@ import com.booqo.booqo_api.center.dto.CenterResponse;
 import com.booqo.booqo_api.user.User;
 import com.booqo.booqo_api.user.UserRepository;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/centers")
+@RequestMapping("/api/centers")
 public class CenterController {
     private final CenterRepository centerRepository;
     private final UserRepository userRepository;
@@ -25,12 +23,10 @@ public class CenterController {
     }
     @PostMapping("/create")
     public ResponseEntity<CenterResponse> createCenter(@Valid @RequestBody CenterRequest request, Authentication authentication) {
-        // 1. Obtener el email del usuario desde el Token
         String userEmail = authentication.getName();
         User user = userRepository.findByEmail(userEmail)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
-        // 2. Crear y guardar el nuevo Centro
         Center center = new Center();
         center.setName(request.name());
         center.setCif(request.cif());
@@ -40,7 +36,6 @@ public class CenterController {
 
         Center savedCenter = centerRepository.save(center);
 
-        // 3. Vincular el usuario al centro
         user.setCenter(savedCenter);
         userRepository.save(user);
 
@@ -49,7 +44,24 @@ public class CenterController {
                 savedCenter.getName(),
                 "Centro creado y vinculado exitosamente"
         );
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
 
-        return ResponseEntity.status((201)).body(response);
+    @GetMapping("/my-center")
+    public ResponseEntity<CenterResponse> getMyCenter(Authentication authentication) {
+        String email = authentication.getName();
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+
+        Center center = user.getCenter();
+        if (center == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(new CenterResponse(
+                center.getId(),
+                center.getName(),
+                "Datos recuperados"
+        ));
     }
 }

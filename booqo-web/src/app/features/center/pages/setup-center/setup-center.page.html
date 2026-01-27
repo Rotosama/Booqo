@@ -1,0 +1,51 @@
+<div class="setup-container">
+    <div class="header">
+        <h1>Configura tu Clínica</h1>
+        <p>Solo un paso más para empezar a gestionar tus pacientes.</p>
+    </div>
+
+    <form [formGroup]="centerForm" (ngSubmit)="onSubmit()" class="setup-form">
+        <div class="form-group">
+            <label>Nombre de la Clínica</label>
+            <input formControlName="name" type="text" placeholder="Ej: Clínica Dental Smile">
+            @if (centerForm.get('name')?.invalid && centerForm.get('name')?.touched) {
+            <div class="error-msg"><small>El nombre es obligatorio</small></div>
+            } @else if (centerForm.get('name')?.valid && centerForm.get('name')?.dirty) {
+            <div class="success-msg">Nombre válido</div>
+            }
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>CIF / NIF</label>
+                <input formControlName="cif" type="text" placeholder="A1234567B">
+                @if (centerForm.get('cif')?.invalid && centerForm.get('cif')?.touched) {
+                <div class="error-msg">
+                    <small>El CIF es obligatorio</small>
+                </div>
+                } @else {
+                <div class="success-msg">CIF válido</div>
+                }
+            </div>
+
+            <div class="form-group">
+                <label>Teléfono</label>
+                <input formControlName="phone" type="text" placeholder="912345678">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Dirección Física</label>
+            <input formControlName="address" type="text" placeholder="Calle Ejemplo, 12, Madrid">
+        </div>
+
+        <div class="form-group">
+            <label>Email de contacto (Clínica)</label>
+            <input formControlName="email" type="email" placeholder="contacto@clinica.com">
+        </div>
+
+        <button type="submit" [disabled]="centerForm.invalid" class="btn-submit">
+            Finalizar Configuración
+        </button>
+    </form>
+</div>

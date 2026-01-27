@@ -28,7 +28,11 @@ export class LoginPage {
       this.authService.login(this.loginForm.value).subscribe({
         next: () => {
           this.notify.show('Inicio de sesión exitoso.', 'success');
-          this.router.navigate(['/dashboard']);
+          if (this.authService.hasCenter()) {
+            this.router.navigate(['/dashboard']);
+          } else {
+            this.router.navigate(['/setup-center']);
+          }
         },
         error: (err: any) => {
           this.notify.show('Error al iniciar sesión. Revisa los datos.', 'error');

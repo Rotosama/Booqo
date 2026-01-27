@@ -28,11 +28,19 @@ export class RegisterPage {
     if (this.registerForm.valid) {
       this.authService.register(this.registerForm.value).subscribe({
         next: () => {
-          this.notify.show('Usuario registrado exitosamente.', 'success');
-          this.router.navigate(['/dashboard']);
+          this.notify.show('¡Cuenta creada con éxito!', 'success');
+
+          // 🚀 Decidimos la ruta basándonos en el token recién guardado
+          if (this.authService.hasCenter()) {
+            this.router.navigate(['/dashboard']);
+          } else {
+            this.router.navigate(['/setup-center']); // <-- Aquí es donde irá el usuario nuevo
+          }
         },
         error: (err) => {
-          this.notify.show('Error al registrar usuario. Revisa los datos.', 'error');
+          // Si el back devuelve el error de "El email ya existe", aquí lo capturas
+          const errorMsg = err.error || 'Error al registrar usuario.';
+          this.notify.show(errorMsg, 'error');
         },
       });
     }

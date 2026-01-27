@@ -1,7 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { RegisterRequest, AuthResponse, LoginRequest } from '../../models/auth.model';
+import { RegisterRequest, AuthResponse, LoginRequest } from '../models/auth.model';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment.development';
 
 /**
  * Servicio que se encarga de la autenticación del usuario.
@@ -10,7 +11,7 @@ import { Observable } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class AuthApiService {
   private readonly http = inject(HttpClient);
-  private readonly url = 'http://localhost:8080/api/auth';
+  private readonly url = `${environment.apiUrl}/auth`;
   /**
    * Metodo que se encarga de registrar un nuevo usuario.
    * @param data datos del usuario a registrar

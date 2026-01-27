@@ -18,6 +18,14 @@ export const routes: Routes = [
     canActivate: [authguard],
   },
   {
+    path: 'setup-center',
+    loadComponent: () =>
+      import('./features/center/pages/setup-center/setup-center.page').then(
+        (m) => m.SetupCenterPage,
+      ),
+    canActivate: [authguard],
+  },
+  {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full',
