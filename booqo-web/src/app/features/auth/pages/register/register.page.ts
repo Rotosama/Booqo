@@ -30,15 +30,13 @@ export class RegisterPage {
         next: () => {
           this.notify.show('¡Cuenta creada con éxito!', 'success');
 
-          // 🚀 Decidimos la ruta basándonos en el token recién guardado
           if (this.authService.hasCenter()) {
             this.router.navigate(['/dashboard']);
           } else {
-            this.router.navigate(['/setup-center']); // <-- Aquí es donde irá el usuario nuevo
+            this.router.navigate(['/setup-center']);
           }
         },
         error: (err) => {
-          // Si el back devuelve el error de "El email ya existe", aquí lo capturas
           const errorMsg = err.error || 'Error al registrar usuario.';
           this.notify.show(errorMsg, 'error');
         },

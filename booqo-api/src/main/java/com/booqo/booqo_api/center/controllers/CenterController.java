@@ -44,7 +44,7 @@ public class CenterController {
                 savedCenter.getName(),
                 "Centro creado y vinculado exitosamente"
         );
-        return ResponseEntity.status(HttpStatus.OK).body(response);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @GetMapping("/my-center")
@@ -55,10 +55,10 @@ public class CenterController {
 
         Center center = user.getCenter();
         if (center == null) {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
 
-        return ResponseEntity.ok(new CenterResponse(
+        return ResponseEntity.status(HttpStatus.OK).body(new CenterResponse(
                 center.getId(),
                 center.getName(),
                 "Datos recuperados"

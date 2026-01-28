@@ -22,7 +22,6 @@ export class SetupCenterPage {
   private notify = inject(NotificationService);
 
   centerForm = this.fb.group({
-    // Las validaciones van juntas en un array []
     name: ['', [Validators.required, Validators.minLength(3)]],
     cif: ['', [Validators.required, Validators.minLength(9), Validators.maxLength(9)]],
     address: ['', [Validators.required, Validators.minLength(3)]],

@@ -9,6 +9,18 @@ export class AuthService {
   private readonly authApi = inject(AuthApiService);
 
   private readonly _token = signal<string | null>(localStorage.getItem('token'));
+  private readonly _user = signal<any>(null);
+
+  readonly userRole = computed(() => {
+    const token = this.token();
+    if (!token) return null;
+    try {
+      const decoded = jwtDecode<any>(token);
+      return decoded.role;
+    } catch {
+      return null;
+    }
+  });
 
   readonly userEmail = computed(() => {
     const token = this.token();
