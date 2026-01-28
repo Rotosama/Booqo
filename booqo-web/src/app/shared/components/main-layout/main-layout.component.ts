@@ -10,16 +10,17 @@ import {
   ChartAreaIcon,
   SettingsIcon,
   LogOut,
+  PanelLeftDashedIcon,
 } from 'lucide-angular';
 
 @Component({
   selector: 'app-main-layout',
   standalone: true,
   imports: [RouterLink, RouterOutlet, LucideAngularModule],
-  templateUrl: './main-layout.html',
-  styleUrl: './main-layout.css',
+  templateUrl: './main-layout.component.html',
+  styleUrl: './main-layout.component.css',
 })
-export class MainLayout {
+export class MainLayoutComponent {
   userIcon = UserIcon;
   calendarIcon = CalendarIcon;
   fileIcon = FileIcon;
@@ -27,6 +28,7 @@ export class MainLayout {
   barChartIcon = ChartAreaIcon;
   settingsIcon = SettingsIcon;
   logoutIcon = LogOut;
+  dashboardIcon = PanelLeftDashedIcon;
   router = inject(Router);
   authService = inject(AuthService);
   userEmail = this.authService.userEmail;

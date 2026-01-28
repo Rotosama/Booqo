@@ -1,17 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SetupCenterPage } from './setup-center.page';
+import { CrmPage } from './crm.page';
 
-describe('SetupCenter', () => {
-  let component: SetupCenterPage;
-  let fixture: ComponentFixture<SetupCenterPage>;
+describe('CrmPage', () => {
+  let component: CrmPage;
+  let fixture: ComponentFixture<CrmPage>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SetupCenterPage],
-    }).compileComponents();
+      imports: [CrmPage]
+    })
+    .compileComponents();
 
-    fixture = TestBed.createComponent(SetupCenterPage);
+    fixture = TestBed.createComponent(CrmPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

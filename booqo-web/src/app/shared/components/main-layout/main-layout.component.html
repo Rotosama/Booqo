@@ -6,12 +6,15 @@
 
         <nav class="nav-menu">
             <a routerLink="/dashboard" routerLinkActive="active" class="nav-item">
+                <lucide-icon [img]="dashboardIcon"></lucide-icon> Dashboard
+            </a>
+            <a routerLink="/calendar" routerLinkActive="active" class="nav-item">
                 <lucide-icon [img]="calendarIcon"></lucide-icon> Agenda
             </a>
-            <a routerLink="/clientes" routerLinkActive="active" class="nav-item">
+            <a routerLink="/clients" routerLinkActive="active" class="nav-item">
                 <lucide-icon [img]="userIcon"></lucide-icon> Pacientes
             </a>
-            <a routerLink="/facturacion" routerLinkActive="active" class="nav-item">
+            <a routerLink="/billing" routerLinkActive="active" class="nav-item">
                 <lucide-icon [img]="fileIcon"></lucide-icon> Facturación
             </a>
             <a routerLink="/crm" routerLinkActive="active" class="nav-item">
