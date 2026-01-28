@@ -6,31 +6,31 @@
 
         <nav class="nav-menu">
             <a routerLink="/dashboard" routerLinkActive="active" class="nav-item">
-                <span class="icon">📅</span> Agenda
+                <lucide-icon [img]="calendarIcon"></lucide-icon> Agenda
             </a>
             <a routerLink="/clientes" routerLinkActive="active" class="nav-item">
-                <span class="icon">👤</span> Pacientes
+                <lucide-icon [img]="userIcon"></lucide-icon> Pacientes
             </a>
             <a routerLink="/facturacion" routerLinkActive="active" class="nav-item">
-                <span class="icon">📄</span> Facturación
+                <lucide-icon [img]="fileIcon"></lucide-icon> Facturación
             </a>
             <a routerLink="/crm" routerLinkActive="active" class="nav-item">
-                <span class="icon">💼</span> CRM
+                <lucide-icon [img]="briefcaseIcon"></lucide-icon> CRM
             </a>
             <a routerLink="/reportes" routerLinkActive="active" class="nav-item">
-                <span class="icon">📊</span> Reportes
+                <lucide-icon [img]="barChartIcon"></lucide-icon> Reportes
             </a>
         </nav>
 
         <div class="nav-footer">
             <a routerLink="/ajustes" class="nav-item">
-                <span class="icon">⚙️</span> Ajustes
+                <lucide-icon [img]="settingsIcon"></lucide-icon> Ajustes
             </a>
             <button (click)="onLogout()" class="nav-item logout-btn">
-                <span class="icon">🔄</span> Salir
+                <lucide-icon [img]="logoutIcon" color="red"></lucide-icon> Salir
             </button>
             <div class="user-profile">
-                <img src="assets/avatar-admin.jpg" alt="Admin" class="avatar">
+                <lucide-icon [img]="userIcon"></lucide-icon>
                 <div class="user-info">
                     <span class="name">{{ userEmail() }}</span>
                     <span class="role">{{ userRole() }}</span>
