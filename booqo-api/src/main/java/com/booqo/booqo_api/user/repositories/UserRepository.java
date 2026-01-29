@@ -1,5 +1,6 @@
-package com.booqo.booqo_api.user;
+package com.booqo.booqo_api.user.repositories;
 
+import com.booqo.booqo_api.user.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

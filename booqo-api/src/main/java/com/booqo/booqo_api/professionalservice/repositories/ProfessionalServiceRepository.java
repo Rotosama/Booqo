@@ -1,4 +1,4 @@
-package com.booqo.booqo_api.professionalservice;
+package com.booqo.booqo_api.professionalservice.repositories;
 import com.booqo.booqo_api.professionalservice.entities.ProfessionalService;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;

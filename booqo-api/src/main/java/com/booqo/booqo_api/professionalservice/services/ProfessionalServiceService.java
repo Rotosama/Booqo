@@ -1,11 +1,11 @@
 package com.booqo.booqo_api.professionalservice.services;
 
-import com.booqo.booqo_api.professionalservice.ProfessionalServiceRepository;
+import com.booqo.booqo_api.professionalservice.repositories.ProfessionalServiceRepository;
 import com.booqo.booqo_api.professionalservice.dto.ServiceRequest;
 import com.booqo.booqo_api.professionalservice.dto.ServiceResponse;
 import com.booqo.booqo_api.professionalservice.entities.ProfessionalService;
-import com.booqo.booqo_api.user.User;
-import com.booqo.booqo_api.user.UserRepository;
+import com.booqo.booqo_api.user.entities.User;
+import com.booqo.booqo_api.user.repositories.UserRepository;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

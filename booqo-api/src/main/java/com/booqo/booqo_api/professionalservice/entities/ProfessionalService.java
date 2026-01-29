@@ -1,6 +1,6 @@
 package com.booqo.booqo_api.professionalservice.entities;
 
-import com.booqo.booqo_api.center.Center;
+import com.booqo.booqo_api.center.entities.Center;
 import jakarta.persistence.*;
 
 @Entity

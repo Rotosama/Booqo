@@ -1,6 +1,6 @@
 package com.booqo.booqo_api.config;
 
-import com.booqo.booqo_api.user.User;
+import com.booqo.booqo_api.user.entities.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

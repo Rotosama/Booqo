@@ -1,11 +1,12 @@
-package com.booqo.booqo_api.user;
+package com.booqo.booqo_api.user.entities;
 
 
-import com.booqo.booqo_api.center.Center;
+import com.booqo.booqo_api.center.entities.Center;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
@@ -33,9 +34,9 @@ public class User implements UserDetails {
     @Column(nullable=false)
     private String password;
 
-    @NotBlank
     @Column(nullable=false)
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private UserRole role;
 
 
     @Column(nullable = false)
@@ -102,7 +103,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(() -> "ROLE_" + this.role);
+        return List.of(new SimpleGrantedAuthority("ROLE_" + role.name()));
     }
 
     public String getPassword() {
@@ -113,11 +114,11 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    public String getRole() {
+    public UserRole getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(UserRole role) {
         this.role = role;
     }
 

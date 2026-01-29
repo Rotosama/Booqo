@@ -1,7 +1,6 @@
-package com.booqo.booqo_api.center;
+package com.booqo.booqo_api.center.entities;
 
-import com.booqo.booqo_api.client.Client;
-import com.booqo.booqo_api.user.User;
+import com.booqo.booqo_api.user.entities.User;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;

@@ -1,11 +1,11 @@
 package com.booqo.booqo_api.center.controllers;
 
-import com.booqo.booqo_api.center.Center;
-import com.booqo.booqo_api.center.CenterRepository;
+import com.booqo.booqo_api.center.entities.Center;
+import com.booqo.booqo_api.center.repositories.CenterRepository;
 import com.booqo.booqo_api.center.dto.CenterRequest;
 import com.booqo.booqo_api.center.dto.CenterResponse;
-import com.booqo.booqo_api.user.User;
-import com.booqo.booqo_api.user.UserRepository;
+import com.booqo.booqo_api.user.entities.User;
+import com.booqo.booqo_api.user.repositories.UserRepository;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

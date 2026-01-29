@@ -1,6 +1,6 @@
 package com.booqo.booqo_api.config;
 
-import com.booqo.booqo_api.user.UserRepository;
+import com.booqo.booqo_api.user.repositories.UserRepository;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
