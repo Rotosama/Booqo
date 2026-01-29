@@ -1,8 +1,12 @@
 package com.booqo.booqo_api.client.entities;
 
+import com.booqo.booqo_api.booking.entities.Booking;
 import com.booqo.booqo_api.center.entities.Center;
 import jakarta.persistence.*;
+
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "clients")
@@ -31,11 +35,14 @@ public class Client {
 
     private LocalDate birthDate;
 
+    private boolean active = true;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "center_id", nullable = false)
     private Center center;
 
-    private boolean active = true;
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    private List<Booking> bookings = new ArrayList<>();
 
     // Getters and Setters
 
@@ -117,5 +124,13 @@ public class Client {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
     }
 }

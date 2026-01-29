@@ -1,12 +1,16 @@
 package com.booqo.booqo_api.center.entities;
 
+import com.booqo.booqo_api.booking.entities.Booking;
+import com.booqo.booqo_api.client.entities.Client;
 import com.booqo.booqo_api.user.entities.User;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
+import java.util.ArrayList;
 import java.util.List;
+
 @Entity
 @Table(name = "centers")
 @Schema(description = "Representa un centro de trabajo o sede de la clínica")
@@ -17,32 +21,36 @@ public class Center {
     private Long id;
 
     @NotBlank
-    @Column (nullable = false, length = 100)
+    @Column(nullable = false, length = 100)
     private String name;
 
     @NotBlank
-    @Column (nullable = false, unique = true, length = 20)
+    @Column(nullable = false, unique = true, length = 20)
     private String cif;
 
     @NotBlank
-    @Column (nullable = false, length = 200)
+    @Column(nullable = false, length = 200)
     private String address;
 
     @NotBlank
-    @Column (nullable = false, length = 15)
+    @Column(nullable = false, length = 15)
     private String phone;
 
     @NotBlank
     @Email
-    @Column (nullable = false, length = 100)
+    @Column(nullable = false, length = 100)
     private String email;
 
     // Relaciones
     @OneToMany(mappedBy = "center")
     private List<User> employees;
-//
-//    @OneToMany(mappedBy = "center")
-//    private List<Client> clients;
+
+    // Dentro de Center.java
+    @OneToMany(mappedBy = "center")
+    private List<Booking> bookings = new ArrayList<>();
+
+    @OneToMany(mappedBy = "center")
+    private List<Client> clients;
 
     // Getters y Setters
 
@@ -102,11 +110,19 @@ public class Center {
         this.employees = employees;
     }
 
-//    public List<Client> getClients() {
-//        return clients;
-//    }
-//
-//    public void setClients(List<Client> clients) {
-//        this.clients = clients;
-//    }
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
+    }
+
+    public List<Client> getClients() {
+        return clients;
+    }
+
+    public void setClients(List<Client> clients) {
+        this.clients = clients;
+    }
 }
